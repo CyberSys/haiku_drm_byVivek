@@ -1,0 +1,19 @@
+SubDir HAIKU_TOP src add-ons kernel drivers graphics non-drm ;
+
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm 3dfx ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm ati ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm common ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm et6x00 ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm framebuffer ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm intel_810 ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm intel_extreme ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm matrox ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm neomagic ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm nvidia ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm nvidia_gpgpu ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm radeon ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm radeon_hd ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm s3 ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm skeleton ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm vesa ;
+SubInclude HAIKU_TOP src add-ons kernel drivers graphics non-drm via ;
