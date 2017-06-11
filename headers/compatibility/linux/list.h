@@ -37,7 +37,7 @@
  * definition prior to the undef.
  */
 
-#include <linuxkpi/compiler.h>
+#include <linuxkpi/linux/compiler.h>
 #include <stddef.h>
 
 #define	prefetch(x)
