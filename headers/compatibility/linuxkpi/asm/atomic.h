@@ -69,13 +69,8 @@ typedef struct {
 #define atomic_clear_int(p, v)	\
 	atomic_and((int32*)(p), (~(v)))
 
-static __inline__ int
-atomic_swap_int(volatile int* p, int val)
-{
-	int32 tmp = atomic_get((int32*)(p));
-	atomic_set((int32*)(p), val);
-	return tmp;
-}
+#define atomic_swap_int(p, v)		\
+	atomic_get_and_set((int32*)(p), (v))
 
 static __inline__ int
 atomic_add_return(int i, atomic_t *v)
