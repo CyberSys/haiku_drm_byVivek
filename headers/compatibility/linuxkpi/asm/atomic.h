@@ -57,60 +57,75 @@ typedef struct {
 #define	linux_atomic_dec_return(v)		atomic_sub_return(1, (v))
 #define	linux_atomic_inc_not_zero(v)		atomic_add_unless((v), 1, 0)
 
-#define atomic_cmpxchg(v, old, new)				\
-__atomic_compare_exchange_n(					\
-	&(v)->counter, &(old), (new),				\
-	false, __ATOMIC_ACQ_REL, __ATOMIC_ACQUIRE)
+#define unlikely(x)		x
+#define likely(x)		x
 
-static inline int
+#define atomic_cmpset_int(p, old, new)		\
+	atomic_test_and_set((int32*)(p), (new), (old))
+
+#define atomic_load_acq_int(p)		\
+	atomic_get((int32*)(p))
+
+#define atomic_clear_int(p, v)	\
+	atomic_and((int32*)(p), (~(v)))
+
+static __inline__ int
+atomic_swap_int(volatile int* p, int val)
+{
+	int32 tmp = atomic_get((int32*)(p));
+	atomic_set((int32*)(p), val);
+	return tmp;
+}
+
+static __inline__ int
 atomic_add_return(int i, atomic_t *v)
 {
 	return atomic_add((int32*)(&v->counter), i);
 }
 
-static inline int
+static __inline__ int
 atomic_sub_return(int i, atomic_t *v)
 {
 	return atomic_add((int32*)(&v->counter), -i);
 }
 
-static inline void
+static __inline__ void
 linux_atomic_set(atomic_t *v, int i)
 {
 	atomic_set((int32*)(&v->counter), i);
 }
 
-static inline void
+static __inline__ void
 atomic_set_release(atomic_t *v, int i)
 {
 	atomic_set((int32*)(&v->counter), i);
 }
 
-static inline void
+static __inline__ void
 atomic_set_mask(unsigned int mask, atomic_t *v)
 {
 	atomic_or((int32*)(&v->counter), (mask));
 }
 
-static inline int
+static __inline__ int
 atomic_read(const atomic_t *v)
 {
 	return atomic_get((int32*)(&v->counter));
 }
 
-static inline int
+static __inline__ int
 atomic_inc(atomic_t *v)
 {
 	return atomic_add((int32*)(&v->counter), 1);
 }
 
-static inline int
+static __inline__ int
 atomic_dec(atomic_t *v)
 {
 	return atomic_add((int32*)(&v->counter), -1);
 }
 
-/*static inline int
+static __inline__ int
 atomic_add_unless(atomic_t *v, int a, int u)
 {
 	int c;
@@ -125,13 +140,13 @@ atomic_add_unless(atomic_t *v, int a, int u)
 	return (c != u);
 }
 
-static inline void
+static __inline__ void
 atomic_clear_mask(unsigned int mask, atomic_t *v)
 {
 	atomic_clear_int(&v->counter, mask);
 }
 
-static inline int
+static __inline__ int
 atomic_xchg(atomic_t *v, int i)
 {
 #if defined(__i386__) || defined(__amd64__) || \
@@ -148,7 +163,7 @@ atomic_xchg(atomic_t *v, int i)
 #endif
 }
 
-static inline int
+static __inline__ int
 atomic_cmpxchg(atomic_t *v, int old, int new)
 {
 	int ret = old;
@@ -203,10 +218,10 @@ atomic_cmpxchg(atomic_t *v, int old, int new)
 	__ret = *(ptr);						\
 	*(ptr) = v;						\
 	__ret;							\
-})*/
+})
 
 #define	LINUX_ATOMIC_OP(op, c_op)				\
-static inline void linux_atomic_##op(int i, atomic_t *v)		\
+static __inline__ void linux_atomic_##op(int i, atomic_t *v)		\
 {								\
 	int c, old;						\
 								\
@@ -216,7 +231,7 @@ static inline void linux_atomic_##op(int i, atomic_t *v)		\
 }
 
 #define	LINUX_ATOMIC_FETCH_OP(op, c_op)				\
-static inline int linux_atomic_fetch_##op(int i, atomic_t *v)		\
+static __inline__ int linux_atomic_fetch_##op(int i, atomic_t *v)		\
 {								\
 	int c, old;						\
 								\
