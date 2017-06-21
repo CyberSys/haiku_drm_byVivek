@@ -34,6 +34,7 @@
 
 #include <stdint.h>
 #include <SupportDefs.h>
+#include <linux/compiler.h>
 
 #define	ATOMIC_INIT(x)	{ .counter = (x) }
 #define __DECONST(type, var) ((type)(uintptr_t)(const void*)(var))
@@ -56,9 +57,6 @@ typedef struct {
 #define	linux_atomic_inc_and_test(v)		(atomic_add_return(1, (v)) == 0)
 #define	linux_atomic_dec_return(v)		atomic_sub_return(1, (v))
 #define	linux_atomic_inc_not_zero(v)		atomic_add_unless((v), 1, 0)
-
-#define unlikely(x)		x
-#define likely(x)		x
 
 #define atomic_cmpset_int(p, old, new)		\
 	atomic_test_and_set((int32*)(p), (new), (old))
