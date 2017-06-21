@@ -31,8 +31,8 @@
 #ifndef	_LINUX_TYPES_H_
 #define	_LINUX_TYPES_H_
 
-#include <linuxkpi/linux/compiler.h>
-#include <linuxkpi/asm/types.h>
+#include <linux/compiler.h>
+#include <asm/types.h>
 
 #ifndef __bitwise__
 #ifdef __CHECKER__

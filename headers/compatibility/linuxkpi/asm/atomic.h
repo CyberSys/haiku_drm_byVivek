@@ -37,7 +37,9 @@
 #include <linux/compiler.h>
 
 #define	ATOMIC_INIT(x)	{ .counter = (x) }
+#ifndef __DECONST
 #define __DECONST(type, var) ((type)(uintptr_t)(const void*)(var))
+#endif
 
 typedef struct {
 	volatile int counter;

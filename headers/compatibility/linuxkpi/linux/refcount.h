@@ -44,14 +44,14 @@
 #define atomic_fetchadd_int(value, addValue) __atomic_fetch_add((value), (addValue), __ATOMIC_ACQUIRE)
 
 static __inline void
-refcount_init(volatile u_int *count, u_int value)
+refcount_init(volatile int *count, int value)
 {
 
 	*count = value;
 }
 
 static __inline void
-refcount_acquire(volatile u_int *count)
+refcount_acquire(volatile int *count)
 {
 
 	KASSERT(*count < UINT_MAX, ("refcount %p overflowed", count));
@@ -59,9 +59,9 @@ refcount_acquire(volatile u_int *count)
 }
 
 static __inline int
-refcount_release(volatile u_int *count)
+refcount_release(volatile int *count)
 {
-	u_int old;
+	int old;
 
 	/* XXX: Should this have a rel membar? */
 	old = atomic_fetchadd_int(count, -1);
