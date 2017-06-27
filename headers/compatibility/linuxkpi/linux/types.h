@@ -33,6 +33,7 @@
 
 #include <linux/compiler.h>
 #include <asm/types.h>
+#include <freebsd/sys/cdefs.h>
 
 #ifndef __bitwise__
 #ifdef __CHECKER__
@@ -41,8 +42,6 @@
 #define __bitwise__
 #endif
 #endif
-
-#define __aligned(x) __attribute__((aligned(x)))
 
 typedef uint16_t __le16;
 typedef uint16_t __be16;
