@@ -2,8 +2,8 @@ SubDir HAIKU_TOP src add-ons kernel drivers graphics drm ;
 
 UsePrivateHeaders [ FDirName graphics drm ] ;
 UsePrivateHeaders [ FDirName graphics drm uapi ] ;
+UseHeaders [ FDirName $(HAIKU_TOP) headers compatibility ] : true ;
 UseHeaders [ FDirName $(HAIKU_TOP) headers compatibility linuxkpi ] : true ;
-UseHeaders [ FDirName $(HAIKU_TOP) headers compatibility linux ] : true ;
 
 UsePrivateKernelHeaders ;
 UseHeaders $(HAIKU_PRIVATE_KERNEL_HEADERS) : true ;
@@ -11,6 +11,7 @@ UseHeaders $(HAIKU_PRIVATE_KERNEL_HEADERS) : true ;
 SubDirCcFlags [ FDefines _KERNEL=1 B_USE_POSITIVE_POSIX_ERRORS=1 __KERNEL__=1 ] ;
 
 KernelAddon drm :
+	test.c
 	 # drm_auth.c			# NOT Complete
 	 # drm_bufs.c			# NOT Complete
 	 # drm_cache.c			# NOT Complete
