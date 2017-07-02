@@ -31,18 +31,6 @@
 #ifndef	_LINUX_GFP_H_
 #define	_LINUX_GFP_H_
 
-#include <sys/cdefs.h>
-#include <sys/types.h>
-#include <sys/systm.h>
-#include <sys/malloc.h>
-
-#include <linux/page.h>
-
-#include <vm/vm_param.h>
-#include <vm/vm_object.h>
-#include <vm/vm_extern.h>
-#include <vm/vm_kern.h>
-
 #define M_WAITOK	0x01u
 #define M_NOWAIT	0x02u
 #define M_USE_RESERVE	0x04u
