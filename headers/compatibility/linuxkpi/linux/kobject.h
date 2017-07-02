@@ -34,6 +34,7 @@
 #include <linux/kernel.h>
 #include <linux/kref.h>
 #include <linux/list.h>
+#include <linux/slab.h>
 
 struct kobject;
 struct sysctl_oid;
@@ -109,11 +110,10 @@ kobject_create(void)
 {
 	struct kobject *kobj;
 
-	kobj = (struct kobject *)calloc(1, sizeof(kobj));
+	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
 
 	if (kobj == (NULL))
 		return (NULL);
-
 	kobject_init(kobj, &linux_kfree_type);
 
 	return (kobj);
