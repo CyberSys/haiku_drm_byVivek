@@ -43,6 +43,10 @@
 #endif
 #endif
 
+#define major(x)	0
+#define minor(x)	0
+#define	makedev(x,y)	0
+
 typedef uint16_t __le16;
 typedef uint16_t __be16;
 typedef uint32_t __le32;
