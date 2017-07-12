@@ -33,13 +33,7 @@
 
 #include <linux/types.h>
 
-// #include <sys/param.h>
-// #include <sys/vmmeter.h>
-
-// #include <machine/atomic.h>
-// #include <vm/vm.h>
-// #include <vm/vm_page.h>
-// #include <vm/pmap.h>
+#include <freebsd/vm/vm.h>
 
 #define vm_memattr_t		uint32
 #define VM_MEMATTR_DEFAULT	0
