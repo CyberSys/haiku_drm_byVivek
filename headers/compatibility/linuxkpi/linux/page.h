@@ -35,8 +35,10 @@
 
 #include <freebsd/vm/vm.h>
 
+#include <KernelExport.h>
+
 #define vm_memattr_t		uint32
-#define VM_MEMATTR_DEFAULT	0
+#define VM_MEMATTR_DEFAULT	B_MTR_WB
 typedef unsigned long linux_pte_t;
 typedef unsigned long linux_pmd_t;
 typedef unsigned long linux_pgd_t;
