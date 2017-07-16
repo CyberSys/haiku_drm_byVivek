@@ -19,4 +19,14 @@ typedef int boolean_t;
 typedef __const char* c_caddr_t;
 typedef uint64_t u_quad_t;
 
+#ifdef B_HAIKU_64_BIT
+
+typedef uint64_t segsz_t;
+
+#else
+
+typedef uint32_t segsz_t;
+
+#endif
+
 #endif
