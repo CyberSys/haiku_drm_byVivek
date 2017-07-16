@@ -28,6 +28,9 @@ typedef char vm_memattr_t;
 typedef u_char objtype_t;
 typedef uint64_t vm_ooffset_t;
 
+struct vm_object;
+typedef struct vm_object *vm_object_t;
+
 #define vmspace_pmap(...)	NULL
 #define pmap_extract(...)	NULL
 
