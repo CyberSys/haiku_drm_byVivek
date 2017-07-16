@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include <KernelExport.h>
-
+#include <vm/vm_types.h>
 
 #ifdef B_HAIKU_64_BIT
 
@@ -20,10 +20,13 @@ typedef uint32_t vm_size_t;
 
 #endif
 
-typedef uint64_t vm_pindex_t;
+typedef page_num_t vm_pindex_t;
 typedef void *pmap_t;
 typedef addr_t vm_offset_t;
 typedef phys_addr_t vm_paddr_t;
+typedef char vm_memattr_t;
+typedef u_char objtype_t;
+typedef uint64_t vm_ooffset_t;
 
 #define vmspace_pmap(...)	NULL
 #define pmap_extract(...)	NULL
