@@ -51,6 +51,12 @@ typedef uint64_t vm_ooffset_t;
 struct vm_object;
 typedef struct vm_object *vm_object_t;
 
+struct vm_map_entry;
+typedef struct vm_map_entry *vm_map_entry_t;
+
+struct vm_map;
+typedef struct vm_map *vm_map_t;
+
 #define vmspace_pmap(...)	NULL
 #define pmap_extract(...)	NULL
 
