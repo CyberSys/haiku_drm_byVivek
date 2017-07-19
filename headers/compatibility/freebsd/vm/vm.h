@@ -58,7 +58,7 @@ struct vm_map;
 typedef struct vm_map *vm_map_t;
 
 struct vm_page;
-typedef struct vm_page *vm_page_t;
+typedef struct fbsd_vm_page *vm_page_t;
 
 #define vmspace_pmap(...)	NULL
 #define pmap_extract(...)	NULL
