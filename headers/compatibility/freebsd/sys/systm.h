@@ -23,6 +23,10 @@
 #include <freebsd/sys/libkern.h>
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define printf freebsd_printf
 int printf(const char *format, ...) __printflike(1, 2);
 
@@ -100,5 +104,9 @@ void free_unr(struct unrhdr *, u_int);
 
 extern char *getenv(const char *name);
 extern void    freeenv(char *env);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif	/* _FBSD_COMPAT_SYS_SYSTM_H_ */

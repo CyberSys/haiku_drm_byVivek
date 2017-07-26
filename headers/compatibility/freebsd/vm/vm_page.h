@@ -3,6 +3,7 @@
 #define PQ_ACTIVE 0x00
 #define PQ_NONE 0x01
 
+#define VM_PAGE_TO_PHYS(p) ((p)->physical_page_number)
 
 extern void vm_page_dirty(vm_page_t m);
 extern void vm_page_reference(vm_page_t m);

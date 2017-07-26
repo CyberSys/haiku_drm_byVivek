@@ -9,6 +9,9 @@
 #include <freebsd/sys/cdefs.h>
 #include <freebsd/sys/types.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int random(void);
 uint32_t arc4random(void);
@@ -16,5 +19,9 @@ uint32_t arc4random(void);
 static __inline int imax(int a, int b) { return (a > b ? a : b); }
 
 extern int abs(int a);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _FBSD_COMPAT_SYS_LIBKERN_H_ */

@@ -38,6 +38,15 @@
 
 #include <KernelExport.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef PAGE_SIZE
+#include <kernel.h>
+#define PAGE_SIZE B_PAGE_SIZE
+#endif
+
 #define vm_memattr_t		uint32
 #define VM_MEMATTR_DEFAULT	B_MTR_WB
 typedef unsigned long linux_pte_t;
@@ -195,5 +204,9 @@ gfpflags_allow_blocking(const gfp_t gfp_flags)
 
 #define	SetPageReserved(page)	do { } while (0)	/* NOP */
 #define	ClearPageReserved(page)	do { } while (0)	/* NOP */
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif	/* _LINUX_PAGE_H_ */
