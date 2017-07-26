@@ -261,8 +261,7 @@ __sg_alloc_table(struct sg_table *table, unsigned int nents,
 		if (unlikely(!sg)) {
 			if (prv)
 				table->nents = ++table->orig_nents;
-
-			return (-ENOMEM);
+			return (ENOMEM);
 		}
 		sg_init_table(sg, alloc_size);
 		table->nents = table->orig_nents += sg_size;
@@ -391,7 +390,7 @@ __sg_page_iter_next(struct sg_page_iter *piter)
 	piter->sg_pgoffset += piter->internal.pg_advance;
 	piter->internal.pg_advance = 1;
 
-	while (piter->sg_pgoffset >= sg_page_count(piter->sg)) {
+	while (piter->sg_pgoffset >= (unsigned int)sg_page_count(piter->sg)) {
 		piter->sg_pgoffset -= sg_page_count(piter->sg);
 		piter->sg = sg_next(piter->sg);
 		if (--piter->internal.nents == 0)
